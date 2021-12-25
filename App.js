@@ -1,13 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  StyleSheet,
+  Platform,
+  Dimensions,
+  View
+} from 'react-native';
+
+import { useDimensions, useDeviceOrientation } from '@react-native-community/hooks'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import Screen from './app/components/Screen';
+
+import Icon from './app/components/Icon';
+import AccountScreen from './app/screens/AccountScreen';
+import ListingsScreen from './app/screens/ListingsScreen';
 
 export default function App() {
+  const handlePress = () => console.log(require('./app/assets/icon.png'));
+  console.log(Dimensions.get('screen'))
+  console.log(useDimensions());
+  const orientation = useDeviceOrientation();
+  console.log(orientation);
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ListingsScreen></ListingsScreen>
   );
 }
 
@@ -15,7 +29,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: Platform.OS === 'android' ? 20 : 0,
   },
 });
