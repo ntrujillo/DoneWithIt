@@ -1,21 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Platform,
-  Dimensions,
-  View,
-  TextInput,
-  Text
 } from 'react-native';
 
 import { useDimensions, useDeviceOrientation } from '@react-native-community/hooks'
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import Screen from './app/components/Screen';
 
-import AppTextInput from './app/components/AppTextInput';
-import AppPicker from './app/components/AppPicker';
 import LoginScreen from './app/screens/LoginScreen';
 import ListingEditScreen from './app/screens/ListingEditScreen';
+import ListingDetailsScreen from './app/screens/ListingDetailsScreen';
+import ListingsScreen from './app/screens/ListingsScreen';
+import AccountScreen from './app/screens/AccountScreen';
+import WelcomeScreen from './app/screens/WelcomeScreen';
+import MessagesScreen from './app/screens/MessagesScreen';
 
 
 export default function App() {
@@ -23,7 +20,7 @@ export default function App() {
   const orientation = useDeviceOrientation();
   console.log(orientation);
   return (
-    <ListingEditScreen></ListingEditScreen>
+    <MessagesScreen></MessagesScreen>
   );
 }
 
