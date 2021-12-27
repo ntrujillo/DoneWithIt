@@ -18,6 +18,7 @@ import AccountScreen from './app/screens/AccountScreen';
 import WelcomeScreen from './app/screens/WelcomeScreen';
 import MessagesScreen from './app/screens/MessagesScreen';
 import Screen from './app/components/Screen';
+import ImageInput from './app/components/ImageInput';
 
 export default function App() {
   console.log(useDimensions());
@@ -27,32 +28,13 @@ export default function App() {
 
   const [imageUri, setImageUri] = useState();
 
-  const requestPermission = async () => {
-    const { granted } = await ImagePicker.requestCameraPermissionsAsync();
-    if (!granted) alert('Yo need to enable permissions to access your photos library');
-  };
 
-  useEffect(() => {
-    requestPermission();
-  }, []);
-
-
-  const selectImage = async () => {
-    try {
-      const result = await ImagePicker.launchImageLibraryAsync();
-      if (!result.cancelled) {
-        console.log('ImageUri', result.uri);
-        setImageUri(result.uri);
-      }
-    } catch (error) {
-      console.log('Error reading an image', error);
-    }
-  }
 
   return (
     <Screen>
-      <Button title='Select Image' onPress={selectImage}></Button>
-      <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
+      <ImageInput
+        imageUri={imageUri}
+        onChangeImage={uri => setImageUri(uri)} />
     </Screen>
   );
 }
