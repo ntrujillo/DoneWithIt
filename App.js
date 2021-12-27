@@ -20,7 +20,7 @@ export default function App() {
   const orientation = useDeviceOrientation();
   console.log(orientation);
   return (
-    <MessagesScreen></MessagesScreen>
+    <ListingEditScreen></ListingEditScreen>
   );
 }
 
