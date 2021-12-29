@@ -19,22 +19,29 @@ import WelcomeScreen from './app/screens/WelcomeScreen';
 import MessagesScreen from './app/screens/MessagesScreen';
 import Screen from './app/components/Screen';
 import ImageInput from './app/components/ImageInput';
+import ImageInputList from './app/components/ImageInputList';
 
 export default function App() {
   console.log(useDimensions());
   const orientation = useDeviceOrientation();
   console.log(orientation);
 
+  const [imageUris, setImageUris] = useState([]);
 
-  const [imageUri, setImageUri] = useState();
+  const handleAdd = uri => {
+    setImageUris([...imageUris, uri]);
+  }
 
-
+  const handleRemove = uri => {
+    setImageUris(imageUris.filter(imageUri => imageUri != uri));
+  }
 
   return (
     <Screen>
-      <ImageInput
-        imageUri={imageUri}
-        onChangeImage={uri => setImageUri(uri)} />
+      <ImageInputList
+        imageUris={imageUris}
+        onAddImage={uri => handleAdd(uri)}
+        onRemoveImage={uri => handleRemove(uri)} />
     </Screen>
   );
 }
